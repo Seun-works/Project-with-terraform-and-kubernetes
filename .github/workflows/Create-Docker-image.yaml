@@ -25,4 +25,4 @@ jobs:
            with:
             context: .
             push: true
-            tags: react-with-terraform:latest
+            tags: ${{secrets.dockerhub_username}}/react-with-terraform:latest
