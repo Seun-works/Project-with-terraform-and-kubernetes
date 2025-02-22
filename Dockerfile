@@ -1,38 +1,56 @@
-# Use the official Node.js 18 image as the base image
+# Use the official Node.js 18 image as the builder image
 FROM node:18-alpine AS base
 
-# Set the working directory
+# Create deps stage for installing dependencies
+FROM base AS deps
+
+RUN apk add --no-cache libc6-compat
+
 WORKDIR /app
 
-# Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
 
-# Install dependencies
 RUN npm ci
 
-# Copy the rest of the application code
-COPY . .
+# Create build stage for building the application
 
-# Build the Next.js application
-RUN npm run build
+FROM base AS builder
 
-# Use the official Node.js 18 image as the base image for the final stage
-FROM node:18-alpine AS final
-
-# Set the working directory
 WORKDIR /app
 
-# Copy the built application from the previous stage
-COPY --from=base /app/.next ./.next
-COPY --from=base /app/public ./public
-COPY --from=base /app/package.json ./package.json
-COPY --from=base /app/next.config.ts ./next.config.ts
+COPY  --from=deps /app/node_modules ./node_modules
 
-# Install only production dependencies
-RUN npm install
+COPY . .
 
-# Expose the port the app runs on
+RUN npm run build
+
+
+# Create the final stage
+FROM base AS runner
+
+# ENV NODE_ENV=production
+
+
+# Add group and user for permissions
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+COPY --from=builder /app/public ./public
+
+RUN mkdir .next
+
+# Grant permissions to the nextjs user
+RUN chown -R nextjs:nodejs .next
+
+#copy the built files from the builder stage
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+#Switch to the nextjs user and not root user for security
+USER nextjs
+
 EXPOSE 3000
 
-# Start the Next.js application
-CMD npm run start
+ENV PORT=3000
+
+CMD HOSTNAME="0.0.0.0" node server.js

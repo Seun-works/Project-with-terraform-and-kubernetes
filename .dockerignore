@@ -1,7 +1,10 @@
 node_modules
 npm-debug.log
-Dockerfile
+.next
+.vscode
 .dockerignore
 .git
 .gitignore
-.env
+Dockerfile
+!.next/static
+!.next/standalone
