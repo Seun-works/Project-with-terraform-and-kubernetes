@@ -8,3 +8,6 @@ npm-debug.log
 Dockerfile
 !.next/static
 !.next/standalone
+.terraform
+.terraform.lock.hcl
+*.tf
