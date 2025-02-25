@@ -13,7 +13,7 @@ This project covers the core concepts of cloud engineering and devOps by adoptin
 - Frontend - NextJs
 - Deployment - Github Actions
 - Infrastructure as Code - Terraform
-- Cloud Services - AWS VPC, AWS EC2, AWS S3, AWS EKS
+- Cloud Services - AWS VPC, AWS EC2, AWS S3, AWS EKS, AWS IAM
 - Containerisation - Docker
 - Container Orchestration - Kubernetes
 
