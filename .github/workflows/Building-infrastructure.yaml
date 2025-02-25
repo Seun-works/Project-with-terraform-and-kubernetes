@@ -1,0 +1,35 @@
+name: Terraform Infrastructure
+
+on: workflow_dispatch
+
+jobs:
+    terraform:
+        runs-on: ubuntu-latest
+        permissions:
+            id-token: write
+            contents: read
+    
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Configure AWS Credentials for China region audience
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            audience: sts.amazonaws.com.cn
+            aws-region: us-east-1
+            role-to-assume: arn:aws:iam::288761745617:role/Role_Github
+            role-session-name: GitHubActions-Terraform
+    
+        - name: Terraform Init
+          run: terraform init
+    
+        - name: Terraform Plan
+          run: terraform plan
+    
+        # - name: Terraform Apply
+        #   run: terraform apply -auto-approve
+    
+        # - name: Terraform Destroy
+        #   run: terraform destroy -auto-approve
+
