@@ -1,4 +1,4 @@
-This project covers the core concepts of cloud engineering and devOps by adopting multiple principles to create a next js application that is easy to transport, and its build process automated thorugh the use of github actions and cloud infrastructure created through the use of terraform.
+This project covers the core concepts of cloud engineering and devOps by adopting multiple principles to create a next js application that is easy to transport, and its build process automated through the use of github actions and cloud infrastructure created through the use of terraform.
 
 # Project Visual Diagram and walkthrough
 ![React-with-terraform drawio](https://github.com/user-attachments/assets/071977ec-90f3-4617-aef3-b2dae0f29b01)
