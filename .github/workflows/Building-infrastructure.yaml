@@ -13,10 +13,10 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v2
 
-        - name: Configure AWS Credentials for China region audience
+        - name: Configure AWS Credentials for us region audience
           uses: aws-actions/configure-aws-credentials@v4
           with:
-            audience: sts.amazonaws.com.cn
+            audience: sts.amazonaws.com
             aws-region: us-east-1
             role-to-assume: arn:aws:iam::288761745617:role/Role_Github
             role-session-name: GitHubActions-Terraform
