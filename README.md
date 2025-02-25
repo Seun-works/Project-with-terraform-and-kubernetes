@@ -28,4 +28,7 @@ This project covers the core concepts of cloud engineering and devOps by adoptin
 - Utilizing Kubernetes pods and servicse to make container available through the service load balancer.
 - Deployed Kubernetes node cluster in private subnets across three availability zones for high availability.
 
+### Future additions
+- Utilizing more images to be deployed within the eks cluster.
+- Adding prometheus monitoring for the pods within the cluster.
 
