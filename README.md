@@ -6,7 +6,7 @@ This project covers the core concepts of cloud engineering and devOps by adoptin
 - The application was turned into an image through the use of Docker and a Dockerfile.
 - The continuous deployment process was done through the use of Github actions workflows.
 - The Infrastructure as code tool used to create the cloud resources for this application to be hosted was done with Terraform.
-- The application is hosted on a VPC network,that consist of multiple subnets. The kubernetes cluster which contains the pods where the applications image turned container is hosted within these pods across multiple availabiltyy zones.
+- The application is hosted on a VPC network with multiple subnets. The application is stored as a container, which is hosted within a kubernetes cluster across multiple availabilty zones.
 
 
 ## Major Components and Technologies used
