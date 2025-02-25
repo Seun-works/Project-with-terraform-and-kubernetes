@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This project covers the core concepts of cloud engineering and devOps by adopting multiple principles to create a next js application that is easy to transport, and its build process automated thorugh the use of github actions and cloud infrastructure created through the use of terraform.
 
-## Getting Started
+# Project Visual Diagram and walkthrough
+![React-with-terraform drawio](https://github.com/user-attachments/assets/071977ec-90f3-4617-aef3-b2dae0f29b01)
+- Frontend was created through the use of react and the nextJs framework
+- The application was turned into an image through the use of Docker and a Dockerfile.
+- The continuous deployment process was done through the use of Github actions workflows.
+- The Infrastructure as code tool used to create the cloud resources for this application to be hosted was done with Terraform.
+- The application is hosted on a VPC network,that consist of multiple subnets. The kubernetes cluster which contains the pods where the applications image turned container is hosted within these pods across multiple availabiltyy zones.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Major Components and Technologies used
+- Frontend - NextJs
+- Deployment - Github Actions
+- Infrastructure as Code - Terraform
+- Cloud Services - AWS VPC, AWS EC2, AWS S3, AWS EKS
+- Containerisation - Docker
+- Container Orchestration - Kubernetes
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Lessons Learned 
+-  Authenticating into aws by using the OIDC and iam role method to gain access to aws services.
+- Creating Kubernetes resources through terraform.
+- Optimizing docker image through the use of multi stage deployments and not repeating installation processes.
+- Appropriate CIDR blocks for both private and public subnets.
+- Spinning up an EKS cluster takes time through the use of terraform.
+- Creating an IAM Role with least privilege permission to allow the GitHub action server to run the terraform commands in the workflow.
+- Utilizing Kubernetes pods and servicse to make container available through the service load balancer.
+- Deployed Kubernetes node cluster in private subnets across three availability zones for high availability.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
